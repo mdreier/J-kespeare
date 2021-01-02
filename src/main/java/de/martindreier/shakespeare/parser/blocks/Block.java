@@ -32,7 +32,21 @@ public sealed abstract class Block permits Title,DramatisPersonae,Section,Direct
 	/**
 	 * Lines of text in the block.
 	 */
-	private List<String> lines = new LinkedList<>();
+	private List<String>	lines	= new LinkedList<>();
+
+	/**
+	 * Line number where this block starts.
+	 */
+	private long			startingLineNumber;
+
+	/**
+	 * Create a new startint line number.
+	 *
+	 * @param startingLineNumber
+	 */
+	protected Block(long startingLineNumber) {
+		this.startingLineNumber = startingLineNumber;
+	}
 
 	/**
 	 * Add a line to the block.
@@ -82,6 +96,16 @@ public sealed abstract class Block permits Title,DramatisPersonae,Section,Direct
 	 */
 	public String getContent() {
 		return this.lines.stream().collect(Collectors.joining(" "));
+	}
+
+	/**
+	 * Get the line index where this block starts in the original
+	 * program.
+	 *
+	 * @return Starting line number of the block.
+	 */
+	public long getLineNumber() {
+		return this.startingLineNumber;
 	}
 
 	/**

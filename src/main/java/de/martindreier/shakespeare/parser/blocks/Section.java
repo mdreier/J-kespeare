@@ -11,6 +11,10 @@ package de.martindreier.shakespeare.parser.blocks;
  */
 public final class Section extends Block {
 
+	public Section(long startingLineNumber) {
+		super(startingLineNumber);
+	}
+
 	/**
 	 * @see de.martindreier.shakespeare.parser.blocks.Block#isMultitline()
 	 */

@@ -45,7 +45,7 @@ public class Blocks {
 	public List<Block> parse(InputStream input) throws IOException {
 		List<String> lines = new LinkedList<>();
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(input))) {
-			lines.add(reader.readLine());
+			reader.lines().forEach(lines::add);
 		}
 		return parse(lines);
 	}
@@ -94,7 +94,7 @@ public class Blocks {
 
 			// Allocate new block if required
 			if (currentBlock == null) {
-				currentBlock = identifyBlockType(blocks.size(), line);
+				currentBlock = identifyBlockType(index, blocks.size(), line);
 			}
 
 			try {
@@ -114,26 +114,28 @@ public class Blocks {
 	 * Identify the block type based on the number of existing blocks
 	 * and the line content.
 	 *
+	 * @param lineNumber
+	 *            Index of the current line.
 	 * @param blockCount
 	 *            Number of existing blocks.
 	 * @param line
 	 *            Line content.
 	 * @return New empty block of the correct type.
 	 */
-	private Block identifyBlockType(long blockCount, String line) {
+	private Block identifyBlockType(long lineNumber, long blockCount, String line) {
 
 		if (blockCount == 0) {
 			// First block is always the title
-			return new Title();
+			return new Title(lineNumber);
 		} else if (blockCount == 1) {
 			// Second block is always the dramatis personae
-			return new DramatisPersonae();
+			return new DramatisPersonae(lineNumber);
 		} else if (line.startsWith("[")) {
-			return new Direction();
+			return new Direction(lineNumber);
 		} else if (line.toLowerCase().startsWith("act") || line.toLowerCase().startsWith("scene")) {
-			return new Section();
+			return new Section(lineNumber);
 		} else {
-			return new Speech();
+			return new Speech(lineNumber);
 		}
 	}
 

@@ -8,6 +8,10 @@ package de.martindreier.shakespeare.parser.blocks;
  */
 public final class DramatisPersonae extends Block {
 
+	public DramatisPersonae(long startingLineNumber) {
+		super(startingLineNumber);
+	}
+
 	/**
 	 * @see de.martindreier.shakespeare.parser.blocks.Block#isMultitline()
 	 */

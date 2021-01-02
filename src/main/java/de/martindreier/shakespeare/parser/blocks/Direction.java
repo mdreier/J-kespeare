@@ -8,6 +8,10 @@ package de.martindreier.shakespeare.parser.blocks;
  */
 public final class Direction extends Block {
 
+	public Direction(long startingLineNumber) {
+		super(startingLineNumber);
+	}
+
 	/**
 	 * @see de.martindreier.shakespeare.parser.blocks.Block#isMultitline()
 	 */

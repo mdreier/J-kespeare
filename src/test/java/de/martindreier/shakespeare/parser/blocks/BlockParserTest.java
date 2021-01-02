@@ -6,6 +6,8 @@ package de.martindreier.shakespeare.parser.blocks;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,6 +97,20 @@ public class BlockParserTest {
 		assertTrue(blocks.get(4) instanceof Direction, "Not recognized as direction block");
 		assertTrue(blocks.get(5) instanceof Speech, "Not recognized as speech block");
 		assertTrue(blocks.get(6) instanceof Direction, "Not recognized as direction block");
+
+		assertEquals(0, blocks.get(0).getLineNumber(), "Incorrect line number of first block");
+		assertEquals(13, blocks.get(6).getLineNumber(), "Incorrect line number of first block");
+	}
+
+	@Test
+	public void sampleProgram() throws IOException {
+		try (InputStream in = this.getClass().getResourceAsStream("/samples/hello.spl")) {
+			List<Block> blocks = new Blocks(this.reporter).parse(in);
+
+			assertNoErrors();
+			assertEquals(30, blocks.size(), "Unexpected number of blocks");
+			assertEquals(88, blocks.get(29).getLineNumber());
+		}
 	}
 
 	protected void assertNoErrors() {

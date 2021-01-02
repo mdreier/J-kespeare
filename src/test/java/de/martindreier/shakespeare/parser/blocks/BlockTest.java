@@ -23,7 +23,7 @@ public class BlockTest {
 	@Test
 	public void addingLinesToSingleLineBlock() throws ParsingException {
 		// Title only allows single line blocks
-		Block block = new Title();
+		Block block = new Title(0);
 		assertFalse(block.isMultitline()); // Verify assumption
 
 		// This should be successful
@@ -47,7 +47,7 @@ public class BlockTest {
 	@Test
 	public void addingLinesToEmptySingleLineBlock() throws ParsingException {
 		// Title only allows single line blocks
-		Block block = new Title();
+		Block block = new Title(0);
 		assertFalse(block.isMultitline()); // Verify assumption
 
 		try {
@@ -61,7 +61,7 @@ public class BlockTest {
 	@Test
 	public void addingSingleLineToEmptySingleLineBlock() throws ParsingException {
 		// Title only allows single line blocks
-		Block block = new Title();
+		Block block = new Title(0);
 		assertFalse(block.isMultitline()); // Verify assumption
 
 		block.addLines(Arrays.asList("B"));
