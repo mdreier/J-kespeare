@@ -1,7 +1,7 @@
 /**
  *
  */
-package de.martindreier.shakespeare.parser;
+package de.martindreier.shakespeare.parser.tokens;
 
 import java.text.ParseException;
 

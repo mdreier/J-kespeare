@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
+import de.martindreier.shakespeare.parser.tokens.RomanNumeral;
 import de.martindreier.shakespeare.syntax.InternalSyntaxException;
 
 /**
